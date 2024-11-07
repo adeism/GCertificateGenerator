@@ -1,47 +1,49 @@
 # Google Apps Script - Certificate Generator 📜
 
-This Google Apps Script automatically generates certificates based on data from a Google Sheet, converts them to PDFs, and emails them to the recipients.
+This Google Apps Script automates the process of generating certificates based on data from a Google Sheet, converting them to PDFs, and emailing them to the specified recipients.  It's designed for efficiency and ease of use, with clear configuration and robust error handling.
 
 ## Features ✨
 
-* **Automated Certificate Generation:** Creates certificates from a Google Slides template. 📄
-* **PDF Conversion:** Converts generated certificates to PDF format.  PDF
-* **Email Delivery:** Sends personalized emails with the attached PDF certificate. 📧
-* **Error Handling:** Logs errors to a dedicated error log sheet and updates the status on the main sheet. ❌
-* **Success Logging:** Logs successful certificate generations to a dedicated log sheet. ✅
+* **Automated Certificate Generation:** Creates personalized certificates from a Google Slides template. 📄
+* **PDF Conversion:** Converts generated certificates into PDF format. PDF
+* **Email Delivery:** Sends customized emails with the attached PDF certificate. 📧
+* **Error Handling:** Logs errors to a dedicated "Error Log" sheet and updates the "Status" on the main sheet. ❌
+* **Success Logging:** Records successful certificate generations in a "Log" sheet. ✅
 * **Data Validation:** Validates email addresses and checks for required fields. ✔️
-* **Dynamic Placeholders:** Uses placeholders in the template to populate certificate details. ✏️
+* **Dynamic Placeholders:** Uses placeholders in the template to dynamically populate certificate details. ✏️
 * **Status Tracking:** Updates the status of each row in the spreadsheet (Processed, Failed). 🔄
-* **PDF Link Storage:** Stores the link to the generated PDF in the spreadsheet. 🔗
+* **PDF Link Storage:** Saves the link to the generated PDF in the spreadsheet for easy access. 🔗
 
 
 ## Prerequisites 📝
 
-1. **Google Sheet:** Create a Google Sheet with the required columns: "Full Name", "Email", and any other data you want to include in the certificate.  A "Status" column will be added automatically if it doesn't exist.
-2. **Google Slides Template:** Create a Google Slides presentation that serves as your certificate template. Use placeholders enclosed in double curly braces `{{PlaceholderName}}` for dynamic content.  For example, `{{Full Name}}`, `{{Email}}`, `{{Date}}`.
+1. **Google Sheet:** Create a Google Sheet with columns for "Full Name", "Email", and any other data you want to include in the certificate. A "Status" column will be added automatically if it doesn't exist.
+2. **Google Slides Template:** Create a Google Slides presentation as your certificate template.  Use placeholders like `{{Full Name}}`, `{{Email}}`, `{{Date}}` enclosed in double curly braces.
 3. **Google Apps Script:** Open Script editor (Tools > Script editor) in your Google Sheet.
-4. **Folder ID:**  Obtain the ID of the Google Drive folder where you want to save the generated certificates and PDFs. Replace `FOLDER_ID` in the script with your folder ID.
-5. **Template ID:** Obtain the ID of your Google Slides template file. Replace `TEMPLATE_ID` in the script with your template ID.
-6. **Email Settings:**  
-    * Customize `EMAIL_SUBJECT` and `EMAIL_BODY` variables with your desired subject and email body. Use placeholders like `{{Full Name}}` to personalize the email.
-    * Ensure that the script has permission to send emails on your behalf.
+4. **Google Drive Folder:** Create a folder in Google Drive to store generated certificates.
+5. **Configuration:**  At the top of the script, update the following constants:
+    * `FOLDER_ID`:  The ID of your Google Drive folder.
+    * `TEMPLATE_ID`: The ID of your Google Slides template.
+    * `EMAIL_SUBJECT`:  The subject of the email.
+    * `EMAIL_BODY`: The body of the email (use placeholders like `{{Full Name}}`).
+
 
 ## Setup ⚙️
 
-1. Copy the provided Google Apps Script code into your Script editor.
-2. Replace the placeholder values for `FOLDER_ID`, `TEMPLATE_ID`, `EMAIL_SUBJECT`, and `EMAIL_BODY` with your actual values.
-3. **Install Triggers:** In the Apps Script editor, go to "Edit" > "Current project's triggers".  Add a new trigger with the following settings:
-    * `Choose which function to run`: `onFormSubmit`
-    * `Select event source`: `From spreadsheet`
-    * `Select event type`: `On form submit`
+1. Copy the provided Google Apps Script code into the Script editor.
+2. Configure the constants at the top of the script with your specific IDs and email details.
+3. **Install Triggers:** In the Apps Script editor (Edit > Current project's triggers), add a new trigger:
+    * `Function`: `onFormSubmit`
+    * `Event source`: `From spreadsheet`
+    * `Event type`: `On form submit`
 
 ## Usage 🚀
 
-1. Enter data into your Google Sheet, including the "Full Name" and "Email" for each recipient. Submitting the form (either via a form linked to the sheet, or by directly editing the sheet if the trigger is set to "On form submit") will trigger the script.
-2. The script will generate a certificate, convert it to PDF, save it to the specified Google Drive folder, and email it to the recipient.
-3. The "Status" column in the sheet will be updated to "Processed" or "Failed" to indicate the outcome. A link to the PDF will also be added to a column next to the "Status" column.
-4. Logs of successful operations and errors will be recorded in the "Log" and "Error Log" sheets respectively.
-
+1. Enter data into your Google Sheet, including "Full Name" and "Email" for each recipient.
+2. Submitting the form (or directly editing the sheet) triggers the script.
+3. The script generates a certificate, converts it to a PDF, saves it to your Google Drive folder, and emails it.
+4. The sheet's "Status" column updates to "Processed" or "Failed", and a link to the PDF is added.
+5. Logs are recorded in the "Log" and "Error Log" sheets.
 
 ## Example Data 📊
 
@@ -53,11 +55,7 @@ This Google Apps Script automatically generates certificates based on data from 
 
 ## Troubleshooting ⚠️
 
-* **Permissions:** Ensure the script has the necessary permissions (Drive, Gmail, Slides). You'll be prompted to authorize these permissions when you run the script for the first time.
-* **Error Log:** Check the "Error Log" sheet for any errors encountered during the process.
-* **Placeholders:** Double-check that the placeholders in your Google Slides template match the column headers in your Google Sheet.
-* **Folder/Template IDs:** Verify that the `FOLDER_ID` and `TEMPLATE_ID` are correct.
-
-## License
-
-This project is open-source and available under the [MIT License](LICENSE). Feel free to modify and use it according to your needs. <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License">
+* **Permissions:** Ensure the script has necessary permissions (Drive, Gmail, Slides).
+* **Error Log:** Check the "Error Log" sheet for details on any errors.
+* **Placeholders:** Verify placeholders in your Slides template match your sheet's column headers.
+* **Configuration:** Double-check `FOLDER_ID`, `TEMPLATE_ID`, email subject, and body.
