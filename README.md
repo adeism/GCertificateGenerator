@@ -36,6 +36,22 @@ This Google Apps Script automates generating personalized certificates, converti
         * `EMAIL_SUBJECT`: Set the email subject.
         * `EMAIL_BODY`: Customize the email body (use placeholders).
 
+## Example Email Output 📧
+
+Here's an example of what the email sent to the recipient will look like:
+   
+     Subject: Your Certificate
+   
+     Dear John Doe,
+   
+     Please find your certificate attached.
+   
+     Sincerely,
+     Your Organization
+
+     Attachment: Certificate John Doe.pdf
+
+
 ## Setup ⚙️
 
 1. **Open Script Editor:** Open the Google Sheet linked to your form. Go to "Extensions" > "Apps Script".
